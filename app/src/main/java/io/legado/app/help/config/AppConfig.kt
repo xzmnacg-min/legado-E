@@ -130,7 +130,7 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
         }
     }
 
-    //dnséç½®
+    //dns配置
     private var _hostMap: Map<String, Any?>? = null
     val hostMap: Map<String, Any?>
         get() = _hostMap ?: run {
@@ -254,7 +254,7 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
             appCtx.putPrefString(PreferKey.bookExportFileName, value)
         }
 
-    // ä¿å­ èªå®ä¹å¯¼åºç« èæ¨¡å¼ æä»¶åjsè¡¨è¾¾å¼
+    // 保存 自定义导出章节模式 文件名js表达式
     var episodeExportFileName: String?
         get() = appCtx.getPrefString(PreferKey.episodeExportFileName, "")
         set(value) {
@@ -277,7 +277,7 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
             }
         }
 
-    // ä¹¦ç±ä¿å­ä½ç½®
+    // 书籍保存位置
     var defaultBookTreeUri: String?
         get() = appCtx.getPrefString(PreferKey.defaultBookTreeUri)
         set(value) {
@@ -318,7 +318,7 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
             appCtx.putPrefLong(PreferKey.remoteServerId, value)
         }
 
-    // æ·»å æ¬å°éæ©çç®å½
+    // 添加本地选择的目录
     var importBookPath: String?
         get() = appCtx.getPrefString("importBookPath")
         set(value) {
@@ -410,7 +410,7 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
             appCtx.putPrefBoolean(PreferKey.exportNoChapterName, value)
         }
 
-    // æ¯å¦å¯ç¨èªå®ä¹å¯¼åº default->false
+    // 是否启用自定义导出 default->false
     var enableCustomExport: Boolean
         get() = appCtx.getPrefBoolean(PreferKey.enableCustomExport, false)
         set(value) {
@@ -697,15 +697,15 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
             * clickActionBL * clickActionBC * clickActionBR != 0
         ) {
             appCtx.putPrefInt(PreferKey.clickActionMC, 0)
-            appCtx.toastOnUi("å½åæ²¡æéç½®èååºå,èªå¨æ¢å¤ä¸­é´åºåä¸ºèå.")
+            appCtx.toastOnUi("当前没有配置菜单区域,自动恢复中间区域为菜单.")
         }
     }
 
-    //è·³è½¬å°æ¼«ç»çé¢ä¸ä½¿ç¨å¯ææ¬æ¨¡å¼
+    //跳转到漫画界面不使用富文本模式
     val showMangaUi: Boolean
         get() = appCtx.getPrefBoolean(PreferKey.showMangaUi, true)
 
-    //ç¦ç¨æ¼«ç»ç¼©æ¾
+    //禁用漫画缩放
     var disableMangaScale: Boolean
         get() = appCtx.getPrefBoolean(PreferKey.disableMangaScale, true)
         set(value) {
@@ -718,35 +718,35 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
             appCtx.putPrefBoolean(PreferKey.disableMangaPageAnim, value)
         }
 
-    //æ¼«ç»é¢å è½½æ°é
+    //漫画预加载数量
     var mangaPreDownloadNum
         get() = appCtx.getPrefInt(PreferKey.mangaPreDownloadNum, 10)
         set(value) {
             appCtx.putPrefInt(PreferKey.mangaPreDownloadNum, value)
         }
 
-    //ç¹å»ç¿»é¡µ
+    //点击翻页
     var disableClickScroll
         get() = appCtx.getPrefBoolean(PreferKey.disableClickScroll, false)
         set(value) {
             appCtx.putPrefBoolean(PreferKey.disableClickScroll, value)
         }
 
-    //æ¼«ç»æ»å¨éåº¦
+    //漫画滚动速度
     var mangaAutoPageSpeed
         get() = appCtx.getPrefInt(PreferKey.mangaAutoPageSpeed, 3)
         set(value) {
             appCtx.putPrefInt(PreferKey.mangaAutoPageSpeed, value)
         }
 
-    //æ¼«ç»é¡µèéç½®
+    //漫画页脚配置
     var mangaFooterConfig
         get() = appCtx.getPrefString(PreferKey.mangaFooterConfig, "")
         set(value) {
             appCtx.putPrefString(PreferKey.mangaFooterConfig, value)
         }
 
-    //æ¼«ç»æ°´å¹³æ»å¨
+    //漫画水平滚动
     var enableMangaHorizontalScroll
         get() = appCtx.getPrefBoolean(PreferKey.enableMangaHorizontalScroll, false)
         set(value) {
@@ -759,14 +759,14 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
             appCtx.putPrefString(PreferKey.mangaColorFilter, value)
         }
 
-    //ç¦ç¨æ¼«ç»åæ é¢
+    //禁用漫画内标题
     var hideMangaTitle
         get() = appCtx.getPrefBoolean(PreferKey.hideMangaTitle, false)
         set(value) {
             appCtx.putPrefBoolean(PreferKey.hideMangaTitle, value)
         }
 
-    //å¼å¯å¢¨æ°´å±æ¨¡å¼
+    //开启墨水屏模式
     var enableMangaEInk
         get() = appCtx.getPrefBoolean(PreferKey.enableMangaEInk, false)
         set(value) {
