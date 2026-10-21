@@ -4,13 +4,13 @@ import android.util.Log
 import splitties.init.appCtx
 
 /**
- * å¢¨æ°´å±å¨å·æ§å¶å¨
+ * 墨水屏全刷控制器
  *
- * éå¯¹å°ç±³éè¯»å¨(RK3566)ç­ Rockchip å¹³å°è®¾å¤:
- *   ç³»ç»éèæå¡ android.os.EinkManager.sendOneFullFrame() è§¦åå¨å±å·æ°
+ * 针对小米阅读器(RK3566)等 Rockchip 平台设备:
+ *   系统隐藏服务 android.os.EinkManager.sendOneFullFrame() 触发全屏刷新
  *
- * Onyx Boox(é«é)ç­è®¾å¤æ æ­¤æå¡, éé»éçº§ä¸åä»»ä½äºã
- * åå°å¥æåªå¨ç¬¬ä¸æ¬¡æååç¼å­, å¤±è´¥ä¹ä¸éè¯(é¿åæ¯é¡µé½æå¼å¸¸)ã
+ * Onyx Boox(高通)等设备无此服务, 静默降级不做任何事。
+ * 反射句柄只在第一次成功后缓存, 失败也不重试(避免每页都抛异常)。
  */
 object EinkRefresher {
 
@@ -23,8 +23,8 @@ object EinkRefresher {
     private var resolved = false
 
     /**
-     * ç¿»é¡µæ¶è°ç¨, æ¯ interval é¡µå¨å·ä¸æ¬¡
-     * @param interval é´éé¡µæ°, <=0 ç¦ç¨
+     * 翻页时调用, 每 interval 页全刷一次
+     * @param interval 间隔页数, <=0 禁用
      */
     fun onPageTurned(interval: Int) {
         if (interval <= 0) {
@@ -39,7 +39,7 @@ object EinkRefresher {
     }
 
     /**
-     * ç«å³å¨å±å·æ°
+     * 立即全屏刷新
      */
     fun refreshNow() {
         if (!resolved) {
